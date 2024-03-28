@@ -1,6 +1,6 @@
 library(shiny)
-# library(syncons)
-devtools::load_all(path = rprojroot::find_root("DESCRIPTION"))
+library(syncons)
+# devtools::load_all(path = rprojroot::find_root("DESCRIPTION"))
 library(bslib)
 
 # SHINY UI ------------------------------------------------------------------
@@ -39,7 +39,7 @@ server = function(input, output, session) {
 
   observeEvent(input$strain_name, {
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
-    updateRadioButtons(inputId = "plate_type", choices = valid_plate_type(length(strain_name)))
+    updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)))
   })
 
   observeEvent(input$plate_type, {
@@ -62,7 +62,7 @@ server = function(input, output, session) {
                          return_layout = input$return_layout)
 
     # 输出结果
-    output$table = renderUI(DT_table(table))
+    output$table = renderUI(syncons:::DT_table(table))
   })
 
 }
