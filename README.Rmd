@@ -1,0 +1,89 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# syncons
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `syncons` is to support massive construction of synthetic communities (SynComs) with 24-, 96- and 384-well plates.
+
+## Installation
+
+You can install the development version of `syncons` like so:
+
+``` r
+install.packages("pak")
+pak::pak("gaospecial/syncons")
+```
+
+Now you can use this package.
+
+```{r}
+library("syncons")
+```
+
+## Layout of SynComs in a plate
+
+A 24-well plate can be used to construct 16 different SynComs with 4 strains.
+
+```{r}
+one_plate(24, return_layout = TRUE)
+```
+
+A 96-well plate can be used to construct 64 different SynComs with 6 strains.
+
+```{r}
+one_plate(96, return_layout = TRUE)
+```
+
+
+A 384-well plate can be used to construct 256 different SynComs with 8 strains.
+
+```{r}
+one_plate(384, return_layout = TRUE)
+```
+
+## Generation of sample tables
+
+Support we have eight strains and want to construct a series of SynComs with all the possible combinations.
+
+```{r}
+strains = paste0("S", 1:8)
+assign_plate(strains, plate_type = "96")
+```
+
+## Generation of supplementary information
+
+This is for Bio-Protocol submission.
+
+```{r eval=FALSE}
+strains = paste0("S", 1:11)
+sheets = list(
+  sheet1 = assign_plate(strains[1:4]),
+  sheet2 = assign_plate(strains[1:5]),
+  sheet3 = assign_plate(strains[1:6], plate_type = "96"),
+  sheet4 = assign_plate(strains[1:7], plate_type = "96"),
+  sheet5_1 = assign_plate(strains[1:8], plate_type = "96"),
+  sheet5_2 = assign_plate(strains[1:8], plate_type = "384"),
+  sheet6_1 = assign_plate(strains[1:9], plate_type = "96"),
+  sheet6_2 = assign_plate(strains[1:9], plate_type = "384"),
+  sheet7 = assign_plate(strains[1:10], plate_type = "384"),
+  sheet8 = assign_plate(strains[1:11], plate_type = "384")
+)
+
+openxlsx::write.xlsx(sheets, file = "Sheets.xlsx")
+```
+
