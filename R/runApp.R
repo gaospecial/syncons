@@ -1,4 +1,4 @@
-#' Launch Reactor Data Shiny App
+#' Run Shiny App locally
 #'
 #' @return a shiny app
 #' @export

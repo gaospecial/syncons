@@ -23,7 +23,7 @@
 #' @param plate_prefix plate prefix
 #' @param return_layout return the layout of plate, instead of a sample table if TRUE
 #'
-#' @return
+#' @return a tibble
 #' @export
 #'
 #' @examples
@@ -87,7 +87,9 @@ valid_plate_type = function(nstrain){
 #' @md
 #'
 #' @examples
-#'   one_plate(plate_name = "", strain_base= "X/Y", strain_add = LETTERS[1:6])
+#'   one_plate("24")
+#'   one_plate("96")
+#'   one_plate("384")
 one_plate = function(plate_type = c("24","96","384"),
                      plate_name = NULL,
                      strain_base = NULL,
@@ -163,13 +165,14 @@ sort_combination = function(strain_combination, strain_sep = "/"){
 
 #' All the possible combination of multiple strains
 #'
-#' @param strains names of strains
-#' @param strain_sep
+#' @param strains names of strains, can be any integers
+#' @param strain_sep separator used to join strains into combination
 #'
-#' @return
+#' @return a character vector
 #' @export
 #'
 #' @examples
+#'   strain_combination(c("A","B","C"))
 strain_combination = function(strains, strain_sep = "/"){
   comb_id = combinations(length(strains))
   comb_str = sapply(comb_id, function(i) strains[i])
