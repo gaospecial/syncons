@@ -2,7 +2,7 @@
 % Please edit documentation in R/runApp.R
 \name{runApp}
 \alias{runApp}
-\title{Launch Reactor Data Shiny App}
+\title{Run Shiny App locally}
 \usage{
 runApp()
 }
@@ -10,5 +10,5 @@ runApp()
 a shiny app
 }
 \description{
-Launch Reactor Data Shiny App
+Run Shiny App locally
 }
