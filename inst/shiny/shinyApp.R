@@ -24,7 +24,7 @@ ui = page_sidebar(
   card(
       uiOutput('message'),
       uiOutput('diagram'),
-      tableOutput("table"),
+      uiOutput("table"),
   )
 
 )

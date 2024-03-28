@@ -2,6 +2,6 @@
 
 export(assign_plate)
 export(one_plate)
-export(runApp)
+export(run_shinyApp)
 export(sort_combination)
 export(strain_combination)

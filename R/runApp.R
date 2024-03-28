@@ -2,7 +2,7 @@
 #'
 #' @return a shiny app
 #' @export
-runApp = function(){
+run_shinyApp = function(){
   check_package("shiny")
   app = system.file(
     "shiny",
