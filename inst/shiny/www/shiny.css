@@ -1,0 +1,12 @@
+#shiny-notification-strain-name-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+
+#strain_name {
+  height: 24em; /* 或者使用 height: 12 * 1.2em; 来确保高度为 12 行 */
+}

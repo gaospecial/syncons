@@ -7,14 +7,15 @@ library(bslib)
 
 ui = page_sidebar(
   theme = bs_theme(version = 5),
-  tags$head(
+  tags$head({
     tags$link(rel = "stylesheet", type = "text/css", href = "shiny.css")
-  ),
+  }),
 
   title = "Synthetic Community Constructor",
-  sidebar = sidebar(width = "20%",
+  sidebar = sidebar(width = "30%",
+    div(id = "shiny-notification-strain-name-notification"),
     textAreaInput("strain_name", "Enter Strain Names By Rows:", paste0("S", 1:6, collapse = "\n")),
-    radioButtons("plate_type", "Select Plate Type:", c("24", "96", "384")),
+    radioButtons("plate_type", "Select Plate Type:", c("24", "96", "384"), selected = character(0)),
     checkboxInput("return_layout", "Return Plate Layout"),
 
     # 按钮
@@ -30,8 +31,6 @@ ui = page_sidebar(
 )
 
 
-
-
 # SERVER SIDE FUNCTIONS ---------------------------------------------------
 
 
@@ -39,7 +38,12 @@ server = function(input, output, session) {
 
   observeEvent(input$strain_name, {
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
-    updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)))
+    if (length(strain_name) < 4 | length(strain_name) > 11){
+      showNotification("Error: Applicable number of strains is from 4 to 11. Please edit your strain names.", duration = NULL, type = "error", id = "strain-name-notification")
+      return()
+    }
+    updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)), selected = character(0))
+    showNotification("Notice: only applicable plate types are shown.", duration = NULL, type = "warning", id = "strain-name-notification")
   })
 
   observeEvent(input$plate_type, {
