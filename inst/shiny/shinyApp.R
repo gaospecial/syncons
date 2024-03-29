@@ -15,7 +15,7 @@ ui = page_sidebar(
   sidebar = sidebar(width = "30%",
     div(id = "shiny-notification-strain-name-notification"),
     textAreaInput("strain_name", "Enter Strain Names By Rows:", paste0("S", 1:6, collapse = "\n")),
-    radioButtons("plate_type", "Select Plate Type:", c("24", "96", "384"), selected = character(0)),
+    radioButtons("plate_type", "Select Plate Type:", c("24", "96", "384")),
     checkboxInput("return_layout", "Return Plate Layout"),
 
     # 按钮
@@ -42,7 +42,7 @@ server = function(input, output, session) {
       showNotification("Error: Applicable number of strains is from 4 to 11. Please edit your strain names.", duration = NULL, type = "error", id = "strain-name-notification")
       return()
     }
-    updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)), selected = character(0))
+    updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)))
     showNotification("Notice: only applicable plate types are shown.", duration = NULL, type = "warning", id = "strain-name-notification")
   })
 
@@ -58,6 +58,7 @@ server = function(input, output, session) {
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
 
     # 处理 message
+    removeNotification("strain-name-notification")
     output$diagram = renderUI("")
 
     # 生成表格
