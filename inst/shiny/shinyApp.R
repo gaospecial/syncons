@@ -39,12 +39,19 @@ server = function(input, output, session) {
 
   output$citation = renderPrint(markdown("**Citation**: to be added."))
 
-  observeEvent(input$strain_name, {
+  validate_strain_name = function(){
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
     if (length(strain_name) < 4 | length(strain_name) > 11){
       showNotification("Error: Applicable number of strains is from 4 to 11. Please edit your strain names.", duration = 5, type = "error", id = "strain-name-notification")
-      return()
+      return(NULL)
+    } else {
+      return(strain_name)
     }
+  }
+
+  observeEvent(input$strain_name, {
+    strain_name = validate_strain_name()
+    if (is.null(strain_name)) return()
     updateRadioButtons(inputId = "plate_type", choices = syncons:::valid_plate_type(length(strain_name)))
     showNotification("Notice: only applicable plate types are shown.", duration = 5, type = "warning", id = "strain-name-notification")
   })
@@ -59,7 +66,8 @@ server = function(input, output, session) {
   # 监听画图按钮的点击事件
   observeEvent(input$get, {
     # 获取输入
-    strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
+    strain_name = validate_strain_name()
+    if (is.null(strain_name)) return()
 
     # 处理 message
     output$message = renderPrint(markdown("**Notes**: The following table lists all the combination id and composition of your SynComs. You may *view*, *sort*, *search* or export to *Excel* as you wish."))
