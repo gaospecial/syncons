@@ -26,6 +26,7 @@ ui = page_sidebar(
       uiOutput('message'),
       uiOutput('diagram'),
       uiOutput("table"),
+      uiOutput("citation")
   )
 
 )
@@ -35,6 +36,8 @@ ui = page_sidebar(
 
 
 server = function(input, output, session) {
+
+  output$citation = renderPrint(markdown("**Citation**: to be added."))
 
   observeEvent(input$strain_name, {
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
@@ -58,6 +61,8 @@ server = function(input, output, session) {
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()
 
     # 处理 message
+    output$message = renderText("The following table lists all the combination id and composition of your SynComs.
+                                You may view, sort, search or export to Excel as you wish.")
     removeNotification("strain-name-notification")
     output$diagram = renderUI("")
 
@@ -68,6 +73,8 @@ server = function(input, output, session) {
 
     # 输出结果
     output$table = renderUI(syncons:::DT_table(table))
+
+
   })
 
 }

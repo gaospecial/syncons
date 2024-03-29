@@ -10,3 +10,8 @@
 #strain_name {
   height: 24em; /* 或者使用 height: 12 * 1.2em; 来确保高度为 12 行 */
 }
+
+
+#citation {
+  top: 4em;
+}
