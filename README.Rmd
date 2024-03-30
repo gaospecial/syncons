@@ -35,6 +35,11 @@ Now you can use this package.
 library("syncons")
 ```
 
+A shiny app ported with this package can be accessed through [shiny.io](https://bio-spring.shinyapps.io/SynComsConstructor/).
+
+![](./man/figures/shiny-app-screenshot.png)
+*Screenshot of the shiny app*
+
 ## Layout of SynComs in a plate
 
 A 24-well plate can be used to construct 16 different SynComs with 4 strains.
