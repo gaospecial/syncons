@@ -37,7 +37,7 @@ ui = page_sidebar(
 
 server = function(input, output, session) {
 
-  output$citation = renderPrint(markdown("**Citation**: to be added."))
+  output$citation = renderPrint(markdown("**Citation**: \n * Tian, Q., Shi, X., Li, Z., Chen, J., Hu, Y., Lv, D., Wu, S., Zhang, Z., Wu, C., He, J., Wan, Y., Chen, Y., Cai, P., Xu, Z., & Gao, C.-H. (2024). An efficient, low-cost and scalable method for constructing a thousand of synthetic communities (SynComs). BIO-101, e2405576. https://doi.org/10.21769/BioProtoc.2405576\n * 田箐韵, 师鑫, 李自枭, 陈钧婷, 胡雅涵, 吕达, 吴书凤, 张志鹏, 吴尘聊, 何佳琪, 万艳红, 陈彦昭, 蔡鹏, 徐志辉, & 高春辉. (2024). 一种高效、低成本、可扩展的合成菌群构建方法. Bio-101, e2405401. https://doi.org/10.21769/BioProtoc.2405401"))
 
   validate_strain_name = function(){
     strain_name = input$strain_name |> strsplit(split = "[\n\r]+") |> unlist()

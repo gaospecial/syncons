@@ -1,0 +1,12 @@
+name: SynComsConstructor
+title: SynComsConstructor
+username: bio-spring
+account: bio-spring
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11609199
+bundleId: 8431184
+url: https://bio-spring.shinyapps.io/SynComsConstructor/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
