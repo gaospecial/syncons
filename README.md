@@ -4,6 +4,12 @@
 # syncons
 
 <!-- badges: start -->
+
+[![English Version
+DOI](https://img.shields.io/badge/DOI-10.21769%2FBioProtoc.2405576-blue)](https://doi.org/10.21769/BioProtoc.2405576)
+[![中文版操作流程
+DOI](https://img.shields.io/badge/DOI-10.21769%2FBioProtoc.2405401-green)](https://doi.org/10.21769/BioProtoc.2405401)
+
 <!-- badges: end -->
 
 The goal of `syncons` is to support massive construction of synthetic

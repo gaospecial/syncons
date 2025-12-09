@@ -1,6 +1,6 @@
 Package: syncons
 Title: Synthetic communities (SynComs) Construction with a efficient and low-cost way
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Chun-Hui","Gao", email="gaospecial@gmail.com", 
   role=c("aut","cre"), comment=c(ORCID = "0000-0002-1445-7939"))
 Description: This package is a supporting software for our bio-protocol.

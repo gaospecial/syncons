@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 # syncons
 
 <!-- badges: start -->
+
+[![English Version DOI](https://img.shields.io/badge/DOI-10.21769%2FBioProtoc.2405576-blue)](https://doi.org/10.21769/BioProtoc.2405576) [![中文版操作流程 DOI](https://img.shields.io/badge/DOI-10.21769%2FBioProtoc.2405401-green)](https://doi.org/10.21769/BioProtoc.2405401)
+
 <!-- badges: end -->
 
 The goal of `syncons` is to support massive construction of synthetic communities (SynComs) with 24-, 96- and 384-well plates.
@@ -37,8 +40,7 @@ library("syncons")
 
 A shiny app ported with this package can be accessed through [shiny.io](https://bio-spring.shinyapps.io/SynComsConstructor/).
 
-![](./man/figures/shiny-app-screenshot.png)
-*Screenshot of the shiny app*
+![](./man/figures/shiny-app-screenshot.png) *Screenshot of the shiny app*
 
 ## Layout of SynComs in a plate
 
@@ -53,7 +55,6 @@ A 96-well plate can be used to construct 64 different SynComs with 6 strains.
 ```{r}
 one_plate(96, return_layout = TRUE)
 ```
-
 
 A 384-well plate can be used to construct 256 different SynComs with 8 strains.
 
@@ -91,4 +92,3 @@ sheets = list(
 
 openxlsx::write.xlsx(sheets, file = "Sheets.xlsx")
 ```
-
